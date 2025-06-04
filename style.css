@@ -19,7 +19,7 @@ body {
         #2E58AE 0%,    /* Start with #2E58AE */
         #2E58AE 5%,    /* #2E58AE solid net tot onder titel */
         /* Overgang naar Hoofdinhoud BG */
-        #D4E2FC 12%,   /* Lichtblauw (#D4E2FC) begint direct na titel (4% overgang) */
+        #D4E2FC 9%,   /* Lichtblauw (#D4E2FC) begint direct na titel (4% overgang) */
         /* Hoofdinhoud Area & Footer */
         #D4E2FC 100%   /* Lichtblauw blijft tot het einde */
     );
