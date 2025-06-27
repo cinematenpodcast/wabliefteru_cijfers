@@ -32,24 +32,32 @@
                         <p class="text-lg">Totale Groei (Dec '24 - Mei '25):</p>
                         <p class="text-3xl font-bold" id="totalGrowthPercentage"></p>
                     </div>
-                    <div class="md:col-span-2">
-                        <p class="text-lg">Gemiddelde groei per maand:</p>
-                        <p class="text-2xl font-bold"><span id="avgGrowthPerMonth"></span> luisterbeurten (<span id="avgGrowthPercentPerMonth"></span>)</p>
-                    </div>
                 </div>
             </section>
 
             <section class="mb-8">
+                <h2 class="text-2xl font-semibold section-title-on-light mb-4">Maandelijkse Luistercijfers & Groei</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="monthlyDataContainer">
+                    <div class="data-card" id="data-dec-2024"><h3>December 2024</h3><p>Luisterbeurten: <span class="font-bold" data-month="dec-2024"></span></p><p>Groei t.o.v. vorige maand: <span class="font-bold" data-growth="dec-2024">N.v.t.</span></p></div>
+                    <div class="data-card" id="data-jan-2025"><h3>Januari 2025</h3><p>Luisterbeurten: <span class="font-bold" data-month="jan-2025"></span></p><p>Groei t.o.v. Dec '24: <span class="font-bold" data-growth="jan-2025"></span></p></div>
+                    <div class="data-card" id="data-feb-2025"><h3>Februari 2025</h3><p>Luisterbeurten: <span class="font-bold" data-month="feb-2025"></span></p><p>Groei t.o.v. Jan '25: <span class="font-bold" data-growth="feb-2025"></span></p></div>
+                    <div class="data-card" id="data-mar-2025"><h3>Maart 2025</h3><p>Luisterbeurten: <span class="font-bold" data-month="mar-2025"></span></p><p>Groei t.o.v. Feb '25: <span class="font-bold" data-growth="mar-2025"></span></p></div>
+                    <div class="data-card" id="data-apr-2025"><h3>April 2025</h3><p>Luisterbeurten: <span class="font-bold" data-month="apr-2025"></span></p><p>Groei t.o.v. Mrt '25: <span class="font-bold" data-growth="apr-2025"></span></p></div>
+                    <div class="data-card" id="data-may-2025"><h3>Mei 2025</h3><p>Luisterbeurten: <span class="font-bold" data-month="may-2025"></span></p><p>Groei t.o.v. Apr '25: <span class="font-bold" data-growth="may-2025"></span></p></div>
+                </div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold section-title-on-light mb-4">Visuele Groei Luistercijfers</h2>
                 <div class="chart-container">
                     <canvas id="listenTrendChart"></canvas>
                     <p class="chart-placeholder-text" id="chartPlaceholderText" style="display: none;">Grafiekdata is niet beschikbaar.</p>
                 </div>
-                <div id="monthInfoCard" class="month-info-card overall-summary-section mt-4 mb-8"></div>
             </section>
 
             <section class="mb-8">
                 <h2 class="text-2xl font-semibold section-title-on-light mb-4">Podcast Feiten & Cijfers</h2>
-                <div class="unified-card">
+                <div class="bg-gray-50 p-6 rounded-lg text-gray-800">
                     <ul class="space-y-3 text-lg">
                         <li class="flex items-start">
                             <span class="text-blue-600 mr-3 mt-1">•</span>
@@ -140,6 +148,6 @@
         </footer>
     </div>
 
-    <script src="script.js" type="module"></script>
+    <script src="script.js"></script>
 </body>
 </html>
