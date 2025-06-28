@@ -43,8 +43,9 @@ async function populateInitialData() {
     console.log("Data updated successfully with June included.");
 }
 
+// Function to manually populate/update data if needed (use in console)
 async function forceUpdateData() {
-    console.log("Force updating data to include June...");
+    console.log("Force updating data...");
     await populateInitialData();
     // Refresh the data after update
     await fetchAndInitialize();
@@ -52,24 +53,40 @@ async function forceUpdateData() {
 
 async function fetchAndInitialize() {
     try {
-        // Always update data to ensure June is included
-        await populateInitialData();
-        
         const querySnapshot = await getDocs(query(collection(db, "monthly-stats"), orderBy("order")));
 
         podcastData = {};
         fullMonthNames = {};
         monthsOrder = [];
-        querySnapshot.forEach(doc => {
-            const data = doc.data();
-            podcastData[doc.id] = { 
-                listens: data.listens, 
-                shortName: data.shortName, 
-                medianRetention: data.medianRetention 
-            };
-            fullMonthNames[doc.id] = data.fullName;
-            monthsOrder.push(doc.id);
-        });
+        
+        if (querySnapshot.empty) {
+            console.log("No data found in Firestore. Populating initial data...");
+            await populateInitialData();
+            // Fetch again after populating
+            const newQuerySnapshot = await getDocs(query(collection(db, "monthly-stats"), orderBy("order")));
+            newQuerySnapshot.forEach(doc => {
+                const data = doc.data();
+                podcastData[doc.id] = { 
+                    listens: data.listens, 
+                    shortName: data.shortName, 
+                    medianRetention: data.medianRetention 
+                };
+                fullMonthNames[doc.id] = data.fullName;
+                monthsOrder.push(doc.id);
+            });
+        } else {
+            // Data exists, just read it without overwriting
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                podcastData[doc.id] = { 
+                    listens: data.listens, 
+                    shortName: data.shortName, 
+                    medianRetention: data.medianRetention 
+                };
+                fullMonthNames[doc.id] = data.fullName;
+                monthsOrder.push(doc.id);
+            });
+        }
 
         updateDashboard();
         renderChart();
@@ -82,13 +99,17 @@ async function fetchAndInitialize() {
 function updateDashboard() {
     let previousListens = null, totalListens = 0;
     let growthSum = 0, growthCount = 0, percentSum = 0;
-
+    
     monthsOrder.forEach(key => {
         const info = podcastData[key];
-        if (info.listens !== null) totalListens += info.listens;
+        
+        // Only count 2025 months for total listens (exclude December 2024)
+        if (info.listens !== null && !key.includes('2024')) {
+            totalListens += info.listens;
+        }
         
         if (key !== monthsOrder[0] && previousListens !== null && info.listens !== null) {
-            const val = ((info.listens - previousListens) / previousListens) * 100;
+                const val = ((info.listens - previousListens) / previousListens) * 100;
             growthSum += (info.listens - previousListens);
             percentSum += val;
             growthCount++;
@@ -108,10 +129,10 @@ function updateDashboard() {
     const firstM = podcastData[monthsOrder[0]].listens, lastM = podcastData[monthsOrder[monthsOrder.length - 1]].listens;
     const totalGrowthEl = document.getElementById('totalGrowthPercentage');
     if (firstM !== null && lastM !== null && firstM !== 0) {
-        const val = ((lastM - firstM) / firstM) * 100;
-        totalGrowthEl.textContent = `${val.toFixed(1)}%${val > 0 ? " ▲" : val < 0 ? " ▼" : ""}`;
-    } else {
-        totalGrowthEl.textContent = "[NVT]";
+            const val = ((lastM - firstM) / firstM) * 100;
+            totalGrowthEl.textContent = `${val.toFixed(1)}%${val > 0 ? " ▲" : val < 0 ? " ▼" : ""}`;
+    } else { 
+        totalGrowthEl.textContent = "[NVT]"; 
     }
     document.getElementById('generationDate').textContent = new Date().toLocaleDateString('nl-BE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
@@ -148,8 +169,8 @@ function renderChart() {
 
     const darkTextColor = '#2E58AE';
     const mediumTextColor = '#2E58AE';
-    const gridDarkColor = 'rgba(0, 0, 0, 0.1)';
-    const barBorderColor = '#1c3d5a';
+    const gridDarkColor = 'rgba(0, 0, 0, 0.1)'; 
+    const barBorderColor = '#1c3d5a'; 
     const datalabelColor = '#2E58AE';
 
     listenChartInstance = new Chart(ctx, {
@@ -177,7 +198,7 @@ function renderChart() {
                 title: { display: true, text: 'Trend Luistercijfers Cinematen Podcast', font: { size: 18, weight: 'bold', family: 'Inter' }, color: darkTextColor, padding: { top: 10, bottom: 30 } },
                 tooltip: { enabled: false },
                 datalabels: {
-                    anchor: 'end', align: 'top', offset: 2, color: datalabelColor,
+                    anchor: 'end', align: 'top', offset: 2, color: datalabelColor, 
                     font: { family: 'Inter', size: 15, weight: '600' },
                     formatter: val => val.toLocaleString('nl-NL')
                 }
