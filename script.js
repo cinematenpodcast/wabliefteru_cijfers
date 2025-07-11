@@ -170,8 +170,8 @@ function renderChart() {
     const darkTextColor = '#2E58AE';
     const mediumTextColor = '#2E58AE';
     const gridDarkColor = 'rgba(0, 0, 0, 0.1)'; 
-    const barBorderColor = '#1c3d5a'; 
-    const datalabelColor = '#2E58AE';
+    const barBorderColor = '#13282e'; 
+    const datalabelColor = '#74f5ac';
 
     listenChartInstance = new Chart(ctx, {
         type: 'bar',
@@ -179,7 +179,7 @@ function renderChart() {
             labels: Object.values(podcastData).map(m => m.shortName),
             datasets: [{
                 data: Object.values(podcastData).map(m => m.listens),
-                backgroundColor: (context) => context.dataIndex === hoverIndex ? '#7c3aed' : '#2E58AE',
+                backgroundColor: (context) => context.dataIndex === hoverIndex ? '#74f5ac' : '#1f3338',
                 borderColor: barBorderColor,
                 borderWidth: 1,
                 borderRadius: 5,
@@ -190,12 +190,12 @@ function renderChart() {
         options: {
             responsive: true, maintainAspectRatio: false,
             scales: {
-                y: { beginAtZero: true, title: { display: true, text: 'Aantal Luisterbeurten', font: { size: 14, family: 'Inter' }, color: darkTextColor }, ticks: { color: mediumTextColor, font: { family: 'Inter' } }, grid: { color: gridDarkColor } },
-                x: { title: { display: true, text: 'Maand (2024-2025)', font: { size: 14, family: 'Inter' }, color: darkTextColor }, ticks: { color: mediumTextColor, font: { family: 'Inter' } }, grid: { display: false } }
+                y: { beginAtZero: true, title: { display: true, text: 'Aantal Luisterbeurten', font: { size: 14, family: 'Inter' }, color: '#74f5ac' }, ticks: { color: '#74f5ac', font: { family: 'Inter' } }, grid: { color: 'rgba(116, 245, 172, 0.2)' } },
+                x: { title: { display: true, text: 'Maand (2024-2025)', font: { size: 14, family: 'Inter' }, color: '#74f5ac' }, ticks: { color: '#74f5ac', font: { family: 'Inter' } }, grid: { display: false } }
             },
             plugins: {
                 legend: { display: false },
-                title: { display: true, text: 'Trend Luistercijfers Cinematen Podcast', font: { size: 18, weight: 'bold', family: 'Inter' }, color: darkTextColor, padding: { top: 10, bottom: 30 } },
+                title: { display: true, text: 'Trend Luistercijfers Cinematen Podcast', font: { size: 18, weight: 'bold', family: 'Inter' }, color: '#74f5ac', padding: { top: 10, bottom: 30 } },
                 tooltip: { enabled: false },
                 datalabels: {
                     anchor: 'end', align: 'top', offset: 2, color: datalabelColor, 
