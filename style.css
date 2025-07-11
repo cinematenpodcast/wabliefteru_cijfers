@@ -49,9 +49,9 @@ strong, .font-bold, span.font-bold { color: #74f5ac !important; }
 h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 
 /* Text colors for middle light section (#1f3338 background) */
-.section-title-on-light { color: #13282e; }
-.text-on-light-bg { color: #13282e; }
-.strong-text-on-light-bg { color: #13282e; }
+.section-title-on-light { color: #74f5ac; }
+.text-on-light-bg { color: #74f5ac; }
+.strong-text-on-light-bg { color: #74f5ac; }
 
 
 .header-logos img.cinematen-logo { max-height: 60px; object-fit: contain; }
@@ -62,9 +62,8 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     border-radius: 0.5rem;
     padding: 1.5rem;
     /* margin-bottom will be added via Tailwind class */
-    color: #513167; /* Dark purple text to match page theme */
+    color: #74f5ac; /* Accent color text to match page theme */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
- color: #74f5ac; /* Text color for dark background */
 }
 .overall-summary-section h2,
 .overall-summary-section p,
@@ -75,12 +74,13 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 /* Data cards - similar styling to overall summary but maybe slightly different */
 .data-card {
     background-color: rgba(255, 255, 255, 0.25); /* Same as overall-summary-section */
+    border-radius: 0.5rem;
     padding: 1rem; margin-bottom: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1); /* Same shadow as overall-summary-section */
 }
 .data-card h3 {
     font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;
-    color: #513167;
+    color: #74f5ac;
 }
 .data-card p { color: #74f5ac; }
 .data-card .font-bold { color: #74f5ac !important; }
@@ -93,7 +93,7 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     border-radius: 0.5rem;
     padding: 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
-    color: #513167;
+    color: #74f5ac;
 }
 .unified-card h2,
 .unified-card h3,
@@ -117,11 +117,10 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 
 .report-footer { /* On #D4E2FC part of gradient */
     background-color: transparent;
-    color: #2E58AE; 
+    color: #74f5ac; 
     padding-top: 1.5rem;
     margin-top: auto;
     text-align: center;
- color: #74f5ac; /* Accent color for footer text */
 }
 .report-footer p { color: #74f5ac; }
 

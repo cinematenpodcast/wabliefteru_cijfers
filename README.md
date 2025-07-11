@@ -1,6 +1,6 @@
-# Cinematen Analytics Rapport Template
+# Wabliefteru Analytics Rapport Template
 
-Een moderne, responsive HTML rapport template voor podcast analytics van Cinematen.
+Een moderne, responsive HTML rapport template voor podcast analytics van Wabliefteru.
 
 ## 🎯 Features
 
@@ -27,14 +27,14 @@ npx browser-sync start --server --files "*.html,*.css,*.js" --port 3000 --open
 
 ## 🎨 Styling
 
-- **Gradient**: Donkerblauw (#2E58AE) naar lichtblauw (#D4E2FC)
+- **Gradient**: Donkergroen (#13282e) naar lichtgroen (#1f3338)
 - **Typography**: Inter font family
-- **Cards**: Semi-transparante witte achtergrond met dropshadows
+- **Cards**: Semi-transparante achtergrond met dropshadows
 - **Responsive**: Tablet optimalisaties voor portrait/landscape mode
 
 ## 📊 Data
 
-Podcast luistercijfers van December 2024 tot Mei 2025 met groei percentage berekeningen.
+Podcast luistercijfers van December 2024 tot Juni 2025 met groei percentage berekeningen.
 
 ## 📱 Compatibiliteit
 
@@ -45,4 +45,4 @@ Geoptimaliseerd voor:
 
 ---
 
-**Gemaakt voor Cinematen Podcast Analytics** 🎬 
+**Gemaakt voor Wabliefteru Podcast Analytics** 🎬

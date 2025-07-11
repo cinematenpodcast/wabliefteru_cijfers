@@ -195,7 +195,7 @@ function renderChart() {
             },
             plugins: {
                 legend: { display: false },
-                title: { display: true, text: 'Trend Luistercijfers Cinematen Podcast', font: { size: 18, weight: 'bold', family: 'Inter' }, color: '#74f5ac', padding: { top: 10, bottom: 30 } },
+                title: { display: true, text: 'Trend Luistercijfers Wabliefteru Podcast', font: { size: 18, weight: 'bold', family: 'Inter' }, color: '#74f5ac', padding: { top: 10, bottom: 30 } },
                 tooltip: { enabled: false },
                 datalabels: {
                     anchor: 'end', align: 'top', offset: 2, color: datalabelColor, 
