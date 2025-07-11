@@ -4,13 +4,13 @@ html, body {
     padding: 0;
     font-family: 'Inter', sans-serif;
     background: linear-gradient(to bottom,
-        /* Header met Logo's & Titel */
-        #513167 0%,    /* Start with dark purple */
-        #513167 5%,    /* Dark purple solid net tot onder titel */
+        /* Header with Logo & Title */
+        #13282e 0%,    /* Start with darkest background */
+        #13282e 5%,    /* Darkest background solid just below title */
         /* Overgang naar Hoofdinhoud BG */
-        #C6C0D3 9%,   /* Light purple begins directly after title (4% transition) */
+        #1f3338 9%,   /* Slightly lighter dark background begins directly after title (4% transition) */
         /* Hoofdinhoud Area & Footer */
-        #C6C0D3 100%   /* Light purple remains to the end */
+        #1f3338 100%   /* Slightly lighter dark background remains to the end */
 );
 }
 body {
@@ -43,20 +43,20 @@ body {
 /* .header-subtitle-text class is no longer needed as the div is removed */
 
 /* Global text color consistency - ensure all text elements use dark blue */
-strong, .font-bold, span.font-bold { color: #513167 !important; }
+strong, .font-bold, span.font-bold { color: #74f5ac !important; }
 
 /* Ensure header title stays white despite global rules */
 h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 
-/* Text colors for middle light section (#D4E2FC background) */
-.section-title-on-light { color: #513167; }
-.text-on-light-bg { color: #513167; }
-.strong-text-on-light-bg { color: #513167; }
+/* Text colors for middle light section (#1f3338 background) */
+.section-title-on-light { color: #13282e; }
+.text-on-light-bg { color: #13282e; }
+.strong-text-on-light-bg { color: #13282e; }
 
 
 .header-logos img.cinematen-logo { max-height: 60px; object-fit: contain; }
 .header-logos img.partner-logo-header { max-height: 50px; object-fit: contain; }
-
+/* Overall summary section - should stand out slightly on the dark background */
 .overall-summary-section {
     background-color: rgba(255, 255, 255, 0.25); /* Even more opaque on dark purple part of gradient */
     border-radius: 0.5rem;
@@ -64,17 +64,17 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     /* margin-bottom will be added via Tailwind class */
     color: #513167; /* Dark purple text to match page theme */
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+ color: #74f5ac; /* Text color for dark background */
 }
 .overall-summary-section h2,
 .overall-summary-section p,
 .overall-summary-section .font-bold {
-    color: #513167 !important; /* Ensure all text elements are dark purple */
+ color: #74f5ac !important; /* Ensure all text elements are accent color */
 }
 
-
+/* Data cards - similar styling to overall summary but maybe slightly different */
 .data-card {
     background-color: rgba(255, 255, 255, 0.25); /* Same as overall-summary-section */
-    border-radius: 0.5rem;
     padding: 1rem; margin-bottom: 1rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1); /* Same shadow as overall-summary-section */
 }
@@ -82,14 +82,14 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     font-size: 1.125rem; font-weight: 600; margin-bottom: 0.5rem;
     color: #513167;
 }
-.data-card p { color: #2E58AE; } 
-.data-card .font-bold { color: #2E58AE !important; } 
+.data-card p { color: #74f5ac; }
+.data-card .font-bold { color: #74f5ac !important; }
 .data-card .growth-positive { color: #059669; } 
 .data-card .growth-negative { color: #dc2626; } 
 
 /* New unified card class for consistent styling */
 .unified-card {
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.15); /* Slightly less opaque for contrast */
     border-radius: 0.5rem;
     padding: 1.5rem;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -103,16 +103,17 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 .unified-card li,
 .unified-card span,
 .unified-card strong {
-    color: #513167 !important;
+    color: #74f5ac !important;
 }
 
-.chart-container { /* On light purple part of gradient */
-    background-color: rgba(255, 255, 255, 0.25);
+/* Chart container - on the slightly lighter dark background */
+.chart-container { 
+    background-color: rgba(255, 255, 255, 0.15); /* Match unified-card background */
     border-radius: 0.5rem;
     padding: 1rem; margin-top: 1rem; height: 380px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
 }
-.chart-placeholder-text { font-style: italic; color: #6b7280; }
+.chart-placeholder-text { font-style: italic; color: #b0b0b0; } /* Lighter gray on dark bg */
 
 .report-footer { /* On #D4E2FC part of gradient */
     background-color: transparent;
@@ -120,8 +121,9 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     padding-top: 1.5rem;
     margin-top: auto;
     text-align: center;
+ color: #74f5ac; /* Accent color for footer text */
 }
-.report-footer p { color: #513167; }
+.report-footer p { color: #74f5ac; }
 
 /* Samsung Galaxy Tab S8 Ultra Portrait Mode (1848 x 2960) */
 @media screen and (min-width: 1200px) and (max-width: 1900px) and (orientation: portrait) {
@@ -131,7 +133,7 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
     }
     
     .report-content {
-        max-width: 100%; padding: 0 40px;
+        max-width: 100%; padding: 0 40px; /* Maintain padding for tablet */
     }
 
     /* Header optimalization */
