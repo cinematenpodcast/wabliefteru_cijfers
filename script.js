@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
 import { getFirestore, collection, getDocs, query, orderBy, writeBatch, doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
@@ -41,14 +41,6 @@ async function populateInitialData() {
 
     await batch.commit();
     console.log("Data updated successfully with June included.");
-}
-
-// Function to manually populate/update data if needed (use in console)
-async function forceUpdateData() {
-    console.log("Force updating data...");
-    await populateInitialData();
-    // Refresh the data after update
-    await fetchAndInitialize();
 }
 
 async function fetchAndInitialize() {
@@ -126,14 +118,24 @@ function updateDashboard() {
     }
 
     document.getElementById('totalListensPeriod').textContent = totalListens.toLocaleString('nl-NL');
-    const firstM = podcastData[monthsOrder[0]].listens, lastM = podcastData[monthsOrder[monthsOrder.length - 1]].listens;
-    const totalGrowthEl = document.getElementById('totalGrowthPercentage');
-    if (firstM !== null && lastM !== null && firstM !== 0) {
+    const firstMKey = monthsOrder.find(key => !key.includes('2024'));
+    const lastMKey = monthsOrder[monthsOrder.length - 1];
+
+    if (firstMKey && lastMKey) {
+        const firstM = podcastData[firstMKey].listens;
+        const lastM = podcastData[lastMKey].listens;
+        const totalGrowthEl = document.getElementById('totalGrowthPercentage');
+        
+        if (firstM !== null && lastM !== null && firstM !== 0) {
             const val = ((lastM - firstM) / firstM) * 100;
             totalGrowthEl.textContent = `${val.toFixed(1)}%${val > 0 ? " ▲" : val < 0 ? " ▼" : ""}`;
-    } else { 
-        totalGrowthEl.textContent = "[NVT]"; 
+        } else { 
+            totalGrowthEl.textContent = "[NVT]"; 
+        }
+    } else {
+        document.getElementById('totalGrowthPercentage').textContent = "[NVT]";
     }
+
     document.getElementById('generationDate').textContent = new Date().toLocaleDateString('nl-BE', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 
