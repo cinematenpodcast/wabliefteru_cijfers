@@ -17,7 +17,6 @@
                 <div class="flex justify-between items-center header-logos mb-6">
                     <img src="https://wabliefteru.be/images/64a722b8c342fc5a0c38bea8_Logo%20Transparant%20Website.png" alt="Wabliefteru Logo" class="cinematen-logo" onerror="this.alt='Wabliefteru Logo (kon niet geladen worden)';this.style.border='1px solid red';">
                     <h1 class="text-3xl font-bold header-title-text text-center mx-4 flex-grow">Wabliefteru? Analytics Rapport</h1>
-                    <!-- Kinepolis logo removed -->
                 </div>
             </header>
             <section class="overall-summary-section mb-12"> 
@@ -45,19 +44,7 @@
                 </div>
                 <div id="monthInfoCard" class="month-info-card overall-summary-section mt-4 mb-8"></div>
             </section>
-
-                <!-- Monthly Stats Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div class="data-card">
-                        <h3>April 2025</h3>
-                        <p>Luisterbeurten: <span class="font-bold">929</span></p>
-                    </div>
-                    <div class="data-card">
-                        <h3>Mei 2025</h3>
-                        <p>Luisterbeurten: <span class="font-bold">1.185</span></p>
-                    </div>
-                </div>
-            </section>
+        </section>
 
             <section class="mb-8">
                 <div class="overall-summary-section text-center" style="padding: 1rem;">
@@ -66,18 +53,13 @@
                              alt="Instagram Logo" 
                              class="w-8 h-8"
                              onerror="this.alt='Instagram logo kon niet geladen worden';this.style.border='1px solid red';">
-                        <h3 class="text-lg font-semibold">Instagram Groei</h3>
+                        <h3 class="text-lg font-semibold">Instagram</h3>
                    </div>
                     <p class="text-sm mb-2">@wabliefteru_podcast</p>
                         <div>
-                            <span class="font-semibold">Januari '25:</span> 217 volgers
-                        </div>
-                        <span class="text-gray-400">→</span>
-                        <div>
-                            <span class="font-semibold">Mei '25:</span> 314 volgers
+                            <span class="font-semibold">Volgers:</span> 217
                         </div>
                     </div>
-                    <p class="text-lg font-bold mt-2 text-green-600">+97 volgers (+45%)</p>
                 </div>
             </section>
         </div>
@@ -93,6 +75,25 @@
         </footer>
     </div>
 
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyC1wtF4VqDSQ5GKIJZSR38kOHhTPW7F9bg",
+        authDomain: "wabliefteru-cijfers-1234.firebaseapp.com",
+        projectId: "wabliefteru-cijfers-1234",
+        storageBucket: "wabliefteru-cijfers-1234.firebasestorage.app",
+        messagingSenderId: "1072294646165",
+        appId: "1:1072294646165:web:83dd5958c8d1a4106ca69c"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
     <script src="script.js" type="module"></script>
 </body>
 </html>
