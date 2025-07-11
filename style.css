@@ -248,6 +248,7 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 
 
     .data-card { background-color: #f8fafc !important; border: 1px solid #e2e8f0 !important; }
+    .data-card h3, .data-card p, .data-card .font-bold { color: #74f5ac !important; }
     .data-card .growth-positive { color: #10b981 !important; }
     .data-card .growth-negative { color: #ef4444 !important; }
 
