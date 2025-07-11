@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";
-import { getFirestore, collection, getDocs, query, orderBy, writeBatch, doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, orderBy, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -21,26 +21,32 @@ let podcastData = {};
 let fullMonthNames = {};
 let monthsOrder = [];
 
-async function populateInitialData() {
-    const batch = writeBatch(db);
-    const initialData = {
-        "dec-2024": { listens: 565, shortName: "Dec '24", fullName: "December 2024", order: 1, medianRetention: null },
-        "jan-2025": { listens: 660, shortName: "Jan '25", fullName: "Januari 2025", order: 2, medianRetention: 65 },
-        "feb-2025": { listens: 663, shortName: "Feb '25", fullName: "Februari 2025", order: 3, medianRetention: 65 },
-        "mar-2025": { listens: 679, shortName: "Mrt '25", fullName: "Maart 2025", order: 4, medianRetention: 88 },
-        "apr-2025": { listens: 806, shortName: "Apr '25", fullName: "April 2025", order: 5, medianRetention: 79 },
-        "may-2025": { listens: 1069, shortName: "Mei '25", fullName: "Mei 2025", order: 6, medianRetention: 83 },
-        "jun-2025": { listens: 865, shortName: "Jun '25", fullName: "Juni 2025", order: 7, medianRetention: 80 }
-    };
+async function fetchSocialStats() {
+    try {
+        const docRef = doc(db, "socials", "instagram");
+        const docSnap = await getDoc(docRef);
 
-    console.log("Populating/updating data with June included...");
-    for (const [key, value] of Object.entries(initialData)) {
-        const docRef = doc(db, "monthly-stats", key);
-        batch.set(docRef, value);
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            const followers = data.followers;
+            const followersElement = document.getElementById('instagramFollowers');
+            if (followersElement) {
+                followersElement.textContent = followers.toLocaleString('nl-NL');
+            }
+        } else {
+            console.log("No such document for instagram stats!");
+            const followersElement = document.getElementById('instagramFollowers');
+            if (followersElement) {
+                followersElement.textContent = 'N/A';
+            }
+        }
+    } catch (error) {
+        console.error("Error fetching social stats: ", error);
+        const followersElement = document.getElementById('instagramFollowers');
+        if (followersElement) {
+            followersElement.textContent = 'Error';
+        }
     }
-
-    await batch.commit();
-    console.log("Data updated successfully with June included.");
 }
 
 async function fetchAndInitialize() {
@@ -52,22 +58,18 @@ async function fetchAndInitialize() {
         monthsOrder = [];
         
         if (querySnapshot.empty) {
-            console.log("No data found in Firestore. Populating initial data...");
-            await populateInitialData();
-            // Fetch again after populating
-            const newQuerySnapshot = await getDocs(query(collection(db, "monthly-stats"), orderBy("order")));
-            newQuerySnapshot.forEach(doc => {
-                const data = doc.data();
-                podcastData[doc.id] = { 
-                    listens: data.listens, 
-                    shortName: data.shortName, 
-                    medianRetention: data.medianRetention 
-                };
-                fullMonthNames[doc.id] = data.fullName;
-                monthsOrder.push(doc.id);
-            });
+            console.error("No data found in Firestore. The database is empty and frontend writing is disabled.");
+            const placeholder = document.getElementById('chartPlaceholderText');
+            if(placeholder) {
+                placeholder.textContent = 'Geen data gevonden in de database.';
+                placeholder.style.display = 'block';
+            }
+            const chart = document.getElementById('listenTrendChart');
+            if(chart) {
+                chart.style.display = 'none';
+            }
         } else {
-            // Data exists, just read it without overwriting
+            // Data exists, just read it
             querySnapshot.forEach(doc => {
                 const data = doc.data();
                 podcastData[doc.id] = { 
@@ -78,10 +80,11 @@ async function fetchAndInitialize() {
                 fullMonthNames[doc.id] = data.fullName;
                 monthsOrder.push(doc.id);
             });
+            updateDashboard();
+            renderChart();
         }
-
-        updateDashboard();
-        renderChart();
+        
+        await fetchSocialStats();
 
     } catch (error) {
         console.error("Error fetching data from Firestore: ", error);
