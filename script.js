@@ -3,12 +3,12 @@ import { getFirestore, collection, getDocs, query, orderBy, writeBatch, doc } fr
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAQAEwE4-iWxCnp4RUnHCR_M60KmS7QreU",
-    authDomain: "cinematen-cijfers.firebaseapp.com",
-    projectId: "cinematen-cijfers",
-    storageBucket: "cinematen-cijfers.appspot.com",
-    messagingSenderId: "314949907797",
-    appId: "1:314949907797:web:3440d6c7230cc6c6dd6bdc"
+    apiKey: "AIzaSyC1wtF4VqDSQ5GKIJZSR38kOHhTPW7F9bg",
+    authDomain: "wabliefteru-cijfers-1234.firebaseapp.com",
+    projectId: "wabliefteru-cijfers-1234",
+    storageBucket: "wabliefteru-cijfers-1234.firebasestorage.app",
+    messagingSenderId: "1072294646165",
+    appId: "1:1072294646165:web:83dd5958c8d1a4106ca69c"
 };
 
 // Initialize Firebase
