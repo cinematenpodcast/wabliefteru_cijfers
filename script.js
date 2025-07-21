@@ -75,7 +75,7 @@ async function fetchAndInitialize() {
                 podcastData[doc.id] = { 
                     listens: data.listens, 
                     shortName: data.shortName, 
-                    medianRetention: data.medianRetention 
+                    consumptionHours: data.consumptionHours 
                 };
                 fullMonthNames[doc.id] = data.fullName;
                 monthsOrder.push(doc.id);
@@ -154,15 +154,13 @@ function updateMonthInfoCard(monthKey) {
         }
     }
     const groeiText = groei === null ? 'N.v.t.' : (groei >= 0 ? '+' : '') + groei.toFixed(1) + '%';
-    const retentionText = info.medianRetention !== null ? `${info.medianRetention}%` : 'N.v.t.';
+    const consumptionText = info.consumptionHours !== null ? `${info.consumptionHours}` : 'N.v.t.';
     
     document.getElementById('monthInfoCard').innerHTML = `
         <div><strong>${fullMonthNames[monthKey] || info.shortName}</strong></div>
         <div>Luisterbeurten: <strong>${info.listens.toLocaleString('nl-NL')}</strong></div>
         <div>Groei t.o.v. vorige maand: <strong>${groeiText}</strong></div>
-        <div>Gemiddelde mediane uitluistertijd: <strong>${retentionText}</strong> 
-            <span class="retention-info-icon" title="Dit cijfer is het gemiddelde van de 'mediane luistertijden' van alle afleveringen deze maand. De mediaan is het punt waarop 50% van het publiek nog luistert. Een hoger % betekent dat we de aandacht langer vasthouden.">ℹ️</span>
-        </div>
+        <div>Totaal aantal uren beluisterd: <strong>${consumptionText}</strong></div>
     `;
 }
 
