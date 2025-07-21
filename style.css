@@ -55,6 +55,7 @@ h1.header-title-text, .header-title-text { color: #FFFFFF !important; }
 
 
 .header-logos img.cinematen-logo { max-height: 120px; object-fit: contain; }
+.header-logos .logo-placeholder { width: 120px; /* Match the logo's effective width */ }
 .header-logos img.partner-logo-header { max-height: 50px; object-fit: contain; }
 /* Overall summary section - should stand out slightly on the dark background */
 .overall-summary-section {
